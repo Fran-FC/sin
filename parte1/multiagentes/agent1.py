@@ -9,15 +9,22 @@ class Sender(Agent):
             print("InformBehav running")
             msg = Message(to="frafolco_r@gtirouter.dsic.upv.es")
             msg.set_metadata("performative", "inform")
-            msg.body = "Hello world"
+            msg.body = input("Introduzca la noticia:\n")
 
             await self.send(msg)
-            print("Message sent!")
+            print("News requested!")
 
+            print("Waiting for response...")
+            msg = await self.receive(timeout=120)
+            if msg:
+                print("Response received: {}".format(msg.body))
+            else:
+                print("Response timeout")
             await self.agent.stop()
+        
 
     async def setup(self):
-        print("SenderAgent started")
+        print("Agent 1 started")
         self.b = self.InformBehav()
         self.add_behaviour(self.b)
 
@@ -29,7 +36,7 @@ if __name__ == "__main__":
 
     while senderagent.is_alive():
         try:
-            time.sleep()
+            time.sleep(1)
         except KeyboardInterrupt:
             senderagent.stop()
             break
