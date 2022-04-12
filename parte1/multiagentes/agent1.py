@@ -6,7 +6,6 @@ from spade.message import Message
 class Sender(Agent):
     class InformBehav(OneShotBehaviour):
         async def run(self):
-            print("InformBehav running")
             msg = Message(to="frafolco_r@gtirouter.dsic.upv.es")
             msg.set_metadata("performative", "inform")
             msg.body = input("Introduzca la noticia:\n")
@@ -24,7 +23,6 @@ class Sender(Agent):
         
 
     async def setup(self):
-        print("Agent 1 started")
         self.b = self.InformBehav()
         self.add_behaviour(self.b)
 
