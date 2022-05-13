@@ -1,0 +1,32 @@
+
+\data\
+ngram 1=10
+ngram 2=12
+
+\1-grams:
+-0.7533277	</s>
+-99	<s>	-99
+-0.9294189	azul	-99
+-1.230449	coche	-99
+-0.7533277	corre	-99
+-0.7533277	el	-99
+-1.230449	perro	-99
+-1.230449	rapido	-99
+-1.230449	tren	-99
+-0.9294189	veloz	-99
+
+\2-grams:
+0	<s> el
+0	azul corre
+0	coche azul
+-0.4771213	corre rapido
+-0.1760913	corre veloz
+-0.4771213	el coche
+-0.4771213	el perro
+-0.4771213	el tren
+0	perro corre
+0	rapido </s>
+0	tren azul
+0	veloz </s>
+
+\end\
