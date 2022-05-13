@@ -1,6 +1,5 @@
 import time
 import json
-from xml.dom.minidom import Attr
 import feedparser
 from spade.agent import Agent
 from spade.behaviour import OneShotBehaviour
@@ -9,10 +8,12 @@ from owlready2 import *
 
 
 class Onto:
-    def __init__(self, onto_url):
+    def __init__(self, onto_url, onto_dir):
         self.onto_url_ = onto_url
+        self.onto_local_dir_ = onto_dir
         self.onto_ = get_ontology(self.onto_url_)
         self.onto_.load()
+        # print(self.onto_.base_iri)
 
     def get_iri(self):
         return self.onto_.base_iri
@@ -56,7 +57,7 @@ class Onto:
                         article.articleBody, content.value)
         except AttributeError:
             pass
-        self.onto_.save(self.onto_url_)
+        self.onto_.save(self.onto_local_dir_)
 
         return article
 
@@ -118,7 +119,9 @@ class ReceiverAgent(Agent):
     class RecvBehav(OneShotBehaviour):
         def __init__(self):
             super().__init__()
-            self.ontology_url_ = "ontologies/rnews.owl"
+            # self.ontology_url_ = "ontologies/rnews.owl"
+            self.ontology_url_ = "http://dev.iptc.org/files/rNews/rnews_1.0_draft3_rdfxml.owl"
+            self.ontology_dir_ = "rnews.owl"
             self.news_url_ = "https://rss.elconfidencial.com/mundo"
 
         async def run(self):
@@ -139,7 +142,7 @@ class ReceiverAgent(Agent):
 
         def processNews(self, news_keyword):
             news_scrapper = NewsScrapper(self.news_url_)
-            onto = Onto(self.ontology_url_)
+            onto = Onto(self.ontology_url_, self.ontology_dir_)
 
             feed = news_scrapper.search_from_titles(news_keyword)
             instance = onto.add_instance(news_keyword, feed)
