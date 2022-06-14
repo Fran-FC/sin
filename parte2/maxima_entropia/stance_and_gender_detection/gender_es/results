@@ -1,0 +1,12 @@
+--- WITHOUT PROCESSING ----
+accuracy=0.6608478802992519  '[A-Za-z/# ]+'
+
+accuracy=0.6458852867830424 '[A-Za-z ]+'
+
+accuracy=0.6433915211970075 '[A-Za-z0-9 ]+'
+
+accuracy=0.6384039900249376 '[A-Za-z/ ]+'
+
+accuracy=0.655860349127182 '[A-Za-z/?#.! ]+'
+
+accuracy=0.668  '[A-Za-z?#.! ]+'

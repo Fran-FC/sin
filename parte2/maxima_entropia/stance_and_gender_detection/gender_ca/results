@@ -1,5 +1,6 @@
 --- WITHOUT PROCESSING ----
-0.6758104738154613  '[A-Za-z/# ]+'
+accuracy=0.6758104738154613  '[A-Za-z/# ]+'
+accuracy=0.6932668329177057 '[A-Za-z?#.! ]+' 
 
 --- WITHOUT URLs       ----
-accuracy=0.6733167082294265
+ accuracy=0.6708229426433915 '[A-Za-z?#.! ]+'
